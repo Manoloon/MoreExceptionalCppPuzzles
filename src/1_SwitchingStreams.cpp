@@ -1,22 +1,23 @@
 #include <fstream>
 #include <iostream>
-void Process(std::fstream in, std::fstream out)
+template<typename C=char,typename T=std::char_traits<C>>
+void Process(std::basic_istream<C,T>& inFile, std::basic_ostream<C,T>& outFile)
 {
     
 }
 
 int main(int argc, char* argv[])
 {
-    std::fstream in;
-    std::fstream out;
+    std::fstream inFile;
+    std::fstream outFile;
     if(argc > 1)
     {
-        in.open(argv[1],ios::in || ios::binary);
+        inFile.open(argv[1],std::ios::in | std::ios::binary);
     }
     if (argc > 2)
     {
-        out.open(argv[2],ios::in || ios::binary);
+        outFile.open(argv[2],std::ios::in | std::ios::binary);
     }
-    Process(in.is_open() ? in : std::cin,out.is_open()? out : std::cout);
+    Process(inFile.is_open() ? inFile : std::cin,outFile.is_open()? outFile : std::cout);
     return 0;
 }
