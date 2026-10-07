@@ -3,7 +3,11 @@
 template<typename C=char,typename T=std::char_traits<C>>
 void Process(std::basic_istream<C,T>& inFile, std::basic_ostream<C,T>& outFile)
 {
-    
+    C Content;
+    while(inFile.get(Content))
+    {
+        outFile.put(Content);
+    }
 }
 
 int main(int argc, char* argv[])
@@ -16,7 +20,7 @@ int main(int argc, char* argv[])
     }
     if (argc > 2)
     {
-        outFile.open(argv[2],std::ios::in | std::ios::binary);
+        outFile.open(argv[2],std::ios::out | std::ios::binary);
     }
     Process(inFile.is_open() ? inFile : std::cin,outFile.is_open()? outFile : std::cout);
     return 0;
