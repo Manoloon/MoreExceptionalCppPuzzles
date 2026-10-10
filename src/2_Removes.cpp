@@ -39,21 +39,7 @@ FwdIter remove_nth(FwdIter first, FwdIter last, size_t n)
     }
     return FwdIter(); 
 }
-// Write a function obj which returns true if nth time its applied, and use that as a predicate for remove_if
-class FlagNth
-{
-    public:
-        FlagNth(size_t n):current_(0),n_(n)
-        {
 
-        }
-        template<typename T>
-        bool operator()(const T&){return ++current_ == n_;}
-
-    private:
-        size_t current_;
-        const size_t n_;
-};
 int main(int argc,char* argv[])
 {
     if(argc < 2)
